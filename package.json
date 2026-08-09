@@ -1,0 +1,21 @@
+{
+  "name": "olimm2p",
+  "version": "0.0.0",
+  "description": "MAN 2 Kota Pekanbaru delegates in the national olympiads (OSN)",
+  "author": "Zafran Prayata Wiza",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file .env index",
+    "test": "node --env-file .test.env index"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zf-ran/olimm2p"
+  },
+  "license": "MIT"
+}
