@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Hasil Tahunan - Olimpiade MAN 2 Kota Pekanbaru</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/main.css">
+	<link rel="stylesheet" href="/css/delegate.css">
+</head>
+<body>
+	<%- include('partial/header.ejs') %>
+	<main>
+		<h1>Hasil Tahunan</h1>
+
+		<p>Berikut delegasi MAN 2 Kota Pekanbaru pada setiap ajang Olimpiade Sains Nasional (OSN).</p>
+
+		<table>
+			<thead>
+				<tr>
+					<th rowspan="2">Tahun</th>
+					<th colspan="<%- stages.length %>">Jumlah Peserta</th>
+					<th rowspan="2" colspan="<%- medals.length %>">Medali</th>
+				</tr>
+				<tr>
+					<% for (const stage of stages) { %>
+						<th><%= stage.id.toUpperCase() %></th>
+					<% } %>
+				</tr>
+			</thead>
+			<tbody>
+				<% for (const year of years) { %>
+					<tr>
+						<td><a href="/year/<%- year.year %>"><%= year.year %></a></td>
+						<% for (const stage of stages) { %>
+							<td><%= year.participantCount[stage.id] %></td>
+						<% } %>
+						<% for (const medal of medals) { %>
+							<td data-medal="<%- medal.id %>"><%= year.medalCount[medal.id] %></td>
+						<% } %>
+					</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</main>
+</body>
+</html>

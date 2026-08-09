@@ -1,0 +1,19 @@
+tr[data-medal="gold"],
+td[data-medal="gold"] {
+	background-color: var(--medal--gold);
+}
+
+tr[data-medal="silver"],
+td[data-medal="silver"] {
+	background-color: var(--medal--silver);
+}
+
+tr[data-medal="bronze"],
+td[data-medal="bronze"] {
+	background-color: var(--medal--bronze);
+}
+
+tr[data-medal="honorable"],
+td[data-medal="honorable"] {
+	background-color: var(--medal--honorable);
+}

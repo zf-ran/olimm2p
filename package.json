@@ -1,12 +1,12 @@
 {
   "name": "olimm2p",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "MAN 2 Kota Pekanbaru delegates in the national olympiads (OSN)",
   "author": "Zafran Prayata Wiza",
   "main": "index.js",
   "scripts": {
-    "start": "node --env-file .env index",
-    "test": "node --env-file .test.env index"
+    "start": "node --env-file .env index.js",
+    "test": "node --env-file .test.env index.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

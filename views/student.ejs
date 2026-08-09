@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title><%= student.fullName %> - Olimpiade MAN 2 Kota Pekanbaru</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/main.css">
+	<link rel="stylesheet" href="/css/delegate.css">
+</head>
+<body>
+	<%- include('partial/header.ejs') %>
+	<main>
+		<h1><%= student.fullName %></h1>
+
+		<p><code>@<%= student.slug %></code></p>
+
+		<p>Berikut arsip <%= student.fullName %> pada ajang Olimpiade Sains Nasional (OSN).</p>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Nama</th>
+					<th>Bidang</th>
+					<th>Tingkat</th>
+					<th>Peringkat</th>
+					<th>Tahun</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for (const delegate of delegates) { %>
+					<tr data-medal="<%- delegate.medalId %>">
+						<td><a href="/student/<%- delegate.studentSlug %>"><%= delegate.studentFullName %></a></td>
+						<td><%= delegate.subjectName %></td>
+						<td><%= delegate.stageName %></td>
+						<td><%= delegate.rank %></td>
+						<td><%= delegate.year %></td>
+					</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</main>
+</body>
+</html>

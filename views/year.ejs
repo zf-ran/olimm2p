@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Hasil <%= year %> - Olimpiade MAN 2 Kota Pekanbaru</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/main.css">
+	<link rel="stylesheet" href="/css/delegate.css">
+</head>
+<body>
+	<%- include('partial/header.ejs') %>
+	<main>
+		<h1>Hasil Tahun <%= year %></h1>
+
+		<p>Berikut delegasi MAN 2 Kota Pekanbaru pada ajang Olimpiade Sains Nasional (OSN) tahun <%= year %>.</p>
+
+		<% for (const stage of stages) { %>
+			<% if (stagedDelegates[stage.id].length == 0) continue; %>
+			<h2><%= stage.displayName %></h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Nama</th>
+						<th>Bidang</th>
+						<th>Tingkat</th>
+						<th>Peringkat</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for (const delegate of stagedDelegates[stage.id]) { %>
+						<tr data-medal="<%- delegate.medalId %>">
+							<td><a href="/student/<%- delegate.studentSlug %>"><%= delegate.studentFullName %></a></td>
+							<td><%= delegate.subjectName %></td>
+							<td><%= delegate.stageName %></td>
+							<td><%= delegate.rank %></td>
+						</tr>
+					<% } %>
+				</tbody>
+			</table>
+		<% } %>
+	</main>
+</body>
+</html>

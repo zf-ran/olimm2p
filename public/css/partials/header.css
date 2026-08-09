@@ -1,0 +1,74 @@
+:root {
+	--top-navigation-height: 80px;
+}
+
+header {
+	position: sticky;
+	top: 0px;
+	z-index: 100;
+}
+
+#top-navigation {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	list-style-type: none;
+	margin: 0; padding: 0 16px;
+	gap: 16px;
+	height: var(--top-navigation-height);
+	box-sizing: border-box;
+	border-bottom: 1px solid var(--border-mute);
+	backdrop-filter: blur(50px);
+	color: var(--text);
+}
+
+#top-navigation span.material-symbols-outlined {
+	font-size: 32px;
+	cursor: pointer;
+}
+
+#top-navigation li {
+	display: flex;
+}
+
+#logo {
+	flex: 1 0 auto;
+}
+
+#logo a {
+	color: var(--text) !important;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	text-decoration: none !important;
+}
+
+#logo .logo-wordmark {
+	line-height: 100%;
+}
+
+#top-navigation .action {
+	display: flex;
+	gap: 4px;
+}
+
+@media screen and (max-width: 700px) {
+	#logo .logo-wordmark {
+		display: none;
+		visibility: hidden;
+	}
+}
+
+ul.navigation {
+	display: flex;
+	gap: 16px;
+}
+
+ul.navigation > li a {
+	padding: 8px;
+	color: var(--text);
+}
+
+ul.navigation > li a:hover {
+	color: var(--link);
+}

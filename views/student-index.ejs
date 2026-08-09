@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Tim - Olimpiade MAN 2 Kota Pekanbaru</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/main.css">
+	<link rel="stylesheet" href="/css/delegate.css">
+</head>
+<body>
+	<%- include('partial/header.ejs') %>
+	<main>
+		<h1>Tim Olimpiade MAN 2 Kota Pekanbaru</h1>
+
+		<p>Berikut arsip tim Olimpiade MAN 2 Kota Pekanbaru pada ajang Olimpiade Sains Nasional (OSN).</p>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Nama</th>
+					<th>Angkatan</th>
+					<th colspan="<%- medals.length %>">Medali</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for (const student of students) { %>
+					<tr>
+						<td><a href="/student/<%- student.slug %>"><%= student.fullName %></a></td>
+						<td><%= student.generation %></td>
+						<% for (const medal of medals) { %>
+							<td data-medal="<%- medal.id %>"><%= student.medalCount[medal.id] %></td>
+						<% } %>
+					</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</main>
+</body>
+</html>
