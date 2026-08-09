@@ -1,0 +1,1 @@
+- `/student`: List the subject they're on.

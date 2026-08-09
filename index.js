@@ -44,7 +44,7 @@ app.get('/student', async (req, res) => {
 				) mc ON mc.medal_id = m.id
 			) AS "medalCount"
 		FROM students s
-		ORDER BY "totalMedalWeight" DESC, "fullName" ASC;
+		ORDER BY generation DESC, "totalMedalWeight" DESC, "fullName" ASC;
 	`;
 
 	const medals = await sql`
@@ -190,11 +190,16 @@ app.get('/year/:year', async (req, res) => {
 
 //* Importing 
 const names = [
-  [ 'Dean Alvano Zaghlul', 'ast', 25 ],
-  [ 'Asiah Aththohiroh', 'ast', 35 ],
-  [ 'Daivo Zuhroh Pranato', 'keb', 61 ],
-  [ 'Safira Nailah Kayyisah', 'kim', 82 ],
-  [ 'Rhazes Ibrah Adh Daffa', 'bio', 48 ]
+	['ast', 'Pralangga Arka Buana'],
+	['eko', 'Mazaya Addini Nashiha'],
+	['inf', 'Muhammad Fathir Hafiz Rean'],
+	['inf', 'Rafa Al-Rasyid Yusuf'],
+	['keb', 'Hafiz Salman Zuhri'],
+	['keb', 'Nameera Dwina Putri'],
+	['fis', 'Danish Riziq Khairan Siregar'],
+	['fis', 'Hafy Al Athfan'],
+	['geo', 'Prasetyo Ziyad Fahrein'],
+	['geo', 'Yuqawa Yardho Akbar']
 ];
 
 /** @param {string} name */
@@ -205,7 +210,7 @@ function slug(name) {
 
 async function importData() {
 	for (const student of names) {
-		const [fullName, subjectId, rank] = student;
+		const [subjectId, fullName] = student;
 		const stageId = 'p';
 		const year = 2026;
 
@@ -213,17 +218,18 @@ async function importData() {
 		continue;
 
 		await sql`
-			INSERT INTO delegates (student_id, subject_id, stage_id, year, rank)
+			INSERT INTO delegates (student_id, subject_id, stage_id, year)
 			VALUES (
 				(SELECT id FROM students WHERE slug = ${slug(fullName)}),
 				${subjectId},
 				${stageId},
-				${year},
-				${rank}
+				${year}
 			);
 		`;
 	}
 }
+
+// importData();
 
 //* Listen 
 const PORT = Number(process.env.PORT || 3000);

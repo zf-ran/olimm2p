@@ -1,6 +1,6 @@
 {
   "name": "olimm2p",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MAN 2 Kota Pekanbaru delegates in the national olympiads (OSN)",
   "author": "Zafran Prayata Wiza",
   "main": "index.js",

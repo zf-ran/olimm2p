@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Hasil <%= year %> - Olimpiade MAN 2 Kota Pekanbaru</title>
+	<title>Delegasi <%= year %> - Olimpiade MAN 2 Kota Pekanbaru</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,7 +11,7 @@
 <body>
 	<%- include('partial/header.ejs') %>
 	<main>
-		<h1>Hasil Tahun <%= year %></h1>
+		<h1>Delegasi Tahun <%= year %></h1>
 
 		<p>Berikut delegasi MAN 2 Kota Pekanbaru pada ajang Olimpiade Sains Nasional (OSN) tahun <%= year %>.</p>
 
@@ -23,7 +23,6 @@
 					<tr>
 						<th>Nama</th>
 						<th>Bidang</th>
-						<th>Tingkat</th>
 						<th>Peringkat</th>
 					</tr>
 				</thead>
@@ -32,7 +31,6 @@
 						<tr data-medal="<%- delegate.medalId %>">
 							<td><a href="/student/<%- delegate.studentSlug %>"><%= delegate.studentFullName %></a></td>
 							<td><%= delegate.subjectName %></td>
-							<td><%= delegate.stageName %></td>
 							<td><%= delegate.rank %></td>
 						</tr>
 					<% } %>
