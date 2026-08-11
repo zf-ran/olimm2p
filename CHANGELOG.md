@@ -1,3 +1,7 @@
+# 1.2.1
+
+- Added student ID in `student`.
+
 # 1.2.0
 
 - Added badges:
