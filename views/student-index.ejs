@@ -15,26 +15,43 @@
 
 		<p>Berikut arsip tim Olimpiade MAN 2 Kota Pekanbaru pada ajang Olimpiade Sains Nasional (OSN).</p>
 
-		<table>
-			<thead>
-				<tr>
-					<th>Nama</th>
-					<th>Angkatan</th>
-					<th colspan="<%- medals.length %>">Medali</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% for (const student of students) { %>
+		<div class="table-container">
+			<table>
+				<thead>
 					<tr>
-						<td><a href="/student/<%- student.slug %>"><%= student.fullName %></a></td>
-						<td><%= student.generation %></td>
-						<% for (const medal of medals) { %>
-							<td data-medal="<%- medal.id %>"><%= student.medalCount[medal.id] %></td>
-						<% } %>
+						<th>Nama</th>
+						<th>Angkatan</th>
+						<!-- <th colspan="<%- medals.length %>">Medali</th> -->
+						<th>Keikutsertaan</th>
+						<th>Bidang</th>
 					</tr>
-				<% } %>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<% for (const student of students) { %>
+						<tr>
+							<td><a href="/student/<%- student.slug %>"><%= student.fullName %></a></td>
+							<td><%= student.generation %></td>
+							<!-- <% for (const medal of medals) { %>
+								<td data-medal="<%- medal.id %>"><%= student.medalCount[medal.id] %></td>
+							<% } %> -->
+							<td>
+								<% for (const participation of student.participations) { %>
+									<span class="badge participation" data-medal="<%- participation.medal %>">
+										<span class="stage"><%= participation.stage %></span>
+										<span class="year"><%= participation.year %></span>
+									</span>
+								<% } %>
+							</td>
+							<td>
+								<% for (const subject of student.subjects) { %>
+									<span class="badge subject"><%= subject %></span>
+								<% } %>
+							</td>
+						</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
 	</main>
 </body>
 </html>

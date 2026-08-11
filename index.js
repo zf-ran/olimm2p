@@ -42,7 +42,44 @@ app.get('/student', async (req, res) => {
 					WHERE student_id = s.id AND medal_id IS NOT NULL
 					GROUP BY medal_id
 				) mc ON mc.medal_id = m.id
-			) AS "medalCount"
+			) AS "medalCount",
+
+			(
+				SELECT COALESCE(
+					jsonb_agg(
+						jsonb_build_object (
+							'year', h.year,
+							'stageId', h.stage_id,
+							'stage', h.stage_name,
+							'medal', h.medal_id
+						) ORDER BY h.year DESC, h.stage_order DESC
+					),
+					'[]'::jsonb
+				)
+				FROM (
+					SELECT DISTINCT ON (d.year)
+						d.year,
+						d.stage_id,
+						stg.display_name AS stage_name,
+						stg.rank_order AS stage_order,
+						d.medal_id
+					FROM delegates d
+					JOIN stages stg ON d.stage_id = stg.id
+					WHERE d.student_id = s.id
+					ORDER BY d.year ASC, stg.rank_order DESC
+				) h
+				-- JOIN stages stg ON h.stage_id = stg.id
+			) AS "participations",
+
+			(
+				SELECT COALESCE(
+					jsonb_agg(DISTINCT sub.display_name),
+					'[]'::jsonb
+				)
+				FROM delegates d
+				JOIN subjects sub ON d.subject_id = sub.id
+				WHERE d.student_id = s.id
+			) AS "subjects"
 		FROM students s
 		ORDER BY generation DESC, "totalMedalWeight" DESC, "fullName" ASC;
 	`;
@@ -187,49 +224,6 @@ app.get('/year/:year', async (req, res) => {
 
 	res.render('year', { year, stagedDelegates, stages });
 });
-
-//* Importing 
-const names = [
-	['ast', 'Pralangga Arka Buana'],
-	['eko', 'Mazaya Addini Nashiha'],
-	['inf', 'Muhammad Fathir Hafiz Rean'],
-	['inf', 'Rafa Al-Rasyid Yusuf'],
-	['keb', 'Hafiz Salman Zuhri'],
-	['keb', 'Nameera Dwina Putri'],
-	['fis', 'Danish Riziq Khairan Siregar'],
-	['fis', 'Hafy Al Athfan'],
-	['geo', 'Prasetyo Ziyad Fahrein'],
-	['geo', 'Yuqawa Yardho Akbar']
-];
-
-/** @param {string} name */
-function slug(name) {
-	name = name.toLowerCase();
-	return name.replace(/[^a-z]/g, '');
-}
-
-async function importData() {
-	for (const student of names) {
-		const [subjectId, fullName] = student;
-		const stageId = 'p';
-		const year = 2026;
-
-		console.log(`Inserting ${fullName} @${slug(fullName)}`);
-		continue;
-
-		await sql`
-			INSERT INTO delegates (student_id, subject_id, stage_id, year)
-			VALUES (
-				(SELECT id FROM students WHERE slug = ${slug(fullName)}),
-				${subjectId},
-				${stageId},
-				${year}
-			);
-		`;
-	}
-}
-
-// importData();
 
 //* Listen 
 const PORT = Number(process.env.PORT || 3000);

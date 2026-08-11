@@ -17,28 +17,30 @@
 
 		<p>Berikut arsip <%= student.fullName %> pada ajang Olimpiade Sains Nasional (OSN).</p>
 
-		<table>
-			<thead>
-				<tr>
-					<th>Nama</th>
-					<th>Bidang</th>
-					<th>Tingkat</th>
-					<th>Peringkat</th>
-					<th>Tahun</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% for (const delegate of delegates) { %>
-					<tr data-medal="<%- delegate.medalId %>">
-						<td><a href="/student/<%- delegate.studentSlug %>"><%= delegate.studentFullName %></a></td>
-						<td><%= delegate.subjectName %></td>
-						<td><%= delegate.stageName %></td>
-						<td><%= delegate.rank %></td>
-						<td><%= delegate.year %></td>
+		<div class="table-container">
+			<table>
+				<thead>
+					<tr>
+						<th>Nama</th>
+						<th>Bidang</th>
+						<th>Tingkat</th>
+						<th>Peringkat</th>
+						<th>Tahun</th>
 					</tr>
-				<% } %>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<% for (const delegate of delegates) { %>
+						<tr data-medal="<%- delegate.medalId %>">
+							<td><a href="/student/<%- delegate.studentSlug %>"><%= delegate.studentFullName %></a></td>
+							<td><span class="badge subject"><%= delegate.subjectName %></span></td>
+							<td><%= delegate.stageName %></td>
+							<td><%= delegate.rank %></td>
+							<td><%= delegate.year %></td>
+						</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
 	</main>
 </body>
 </html>

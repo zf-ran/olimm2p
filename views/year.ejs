@@ -18,24 +18,26 @@
 		<% for (const stage of stages) { %>
 			<% if (stagedDelegates[stage.id].length == 0) continue; %>
 			<h2><%= stage.displayName %></h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Nama</th>
-						<th>Bidang</th>
-						<th>Peringkat</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% for (const delegate of stagedDelegates[stage.id]) { %>
-						<tr data-medal="<%- delegate.medalId %>">
-							<td><a href="/student/<%- delegate.studentSlug %>"><%= delegate.studentFullName %></a></td>
-							<td><%= delegate.subjectName %></td>
-							<td><%= delegate.rank %></td>
+			<div class="table-container">
+				<table>
+					<thead>
+						<tr>
+							<th>Nama</th>
+							<th>Bidang</th>
+							<th>Peringkat</th>
 						</tr>
-					<% } %>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<% for (const delegate of stagedDelegates[stage.id]) { %>
+							<tr data-medal="<%- delegate.medalId %>">
+								<td><a href="/student/<%- delegate.studentSlug %>"><%= delegate.studentFullName %></a></td>
+								<td><span class="badge subject"><%= delegate.subjectName %></span></td>
+								<td><%= delegate.rank %></td>
+							</tr>
+						<% } %>
+					</tbody>
+				</table>
+			</div>
 		<% } %>
 	</main>
 </body>
