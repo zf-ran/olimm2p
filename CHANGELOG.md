@@ -1,3 +1,8 @@
+# 1.2.2
+
+- Added tabular numbers.
+- Added about page.
+
 # 1.2.1
 
 - Added student ID in `student`.

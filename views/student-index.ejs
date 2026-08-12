@@ -21,7 +21,6 @@
 					<tr>
 						<th>Nama</th>
 						<th>Angkatan</th>
-						<!-- <th colspan="<%- medals.length %>">Medali</th> -->
 						<th>Keikutsertaan</th>
 						<th>Bidang</th>
 					</tr>
@@ -30,10 +29,7 @@
 					<% for (const student of students) { %>
 						<tr>
 							<td><a href="/student/<%- student.slug %>"><%= student.fullName %></a></td>
-							<td><%= student.generation %></td>
-							<!-- <% for (const medal of medals) { %>
-								<td data-medal="<%- medal.id %>"><%= student.medalCount[medal.id] %></td>
-							<% } %> -->
+							<td class="number"><%= student.generation %></td>
 							<td>
 								<% for (const participation of student.participations) { %>
 									<span class="badge participation" data-medal="<%- participation.medal %>">

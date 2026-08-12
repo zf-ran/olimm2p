@@ -34,10 +34,10 @@
 						<tr>
 							<td><a href="/year/<%- year.year %>"><%= year.year %></a></td>
 							<% for (const stage of stages) { %>
-								<td><%= year.participantCount[stage.id] %></td>
+								<td class="number"><%= year.participantCount[stage.id] %></td>
 							<% } %>
 							<% for (const medal of medals) { %>
-								<td data-medal="<%- medal.id %>"><%= year.medalCount[medal.id] %></td>
+								<td class="number" data-medal="<%- medal.id %>"><%= year.medalCount[medal.id] %></td>
 							<% } %>
 						</tr>
 					<% } %>

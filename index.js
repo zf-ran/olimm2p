@@ -3,6 +3,8 @@ const app = express();
 
 const path = require('path');
 
+const { version } = require('./package.json');
+
 //* Database 
 const { neon } = require('@neondatabase/serverless');
 
@@ -13,11 +15,15 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//* Endpoints 
 app.get('/', async (req, res) => {
 	res.render('index');
 });
 
-//* Endpoints 
+app.get('/about', (req, res) => {
+	res.render('about', { version });
+});
+
 app.get('/student', async (req, res) => {
 	const students = await sql`
 		SELECT

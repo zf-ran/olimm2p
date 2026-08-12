@@ -534,6 +534,11 @@ th {
 	vertical-align: text-top;
 }
 
+td.number {
+	font-variant: tabular-nums;
+	text-align: right;
+}
+
 th {
 	text-align: left;
 	background: hsl(from var(--border-mute) h s l / 20%);
